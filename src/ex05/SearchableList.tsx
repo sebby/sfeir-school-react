@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField } from "@rmwc/textfield";
 
 import { PersonCard } from "../solution/PersonCard";
@@ -19,14 +19,34 @@ type SearchableListProps = {
 };
 
 export const SearchableList: React.FC<SearchableListProps> = ({ people }) => {
+  const [search, setSearch] = useState("");
+
+  const onSearchChange = event => {
+    setSearch(event.target.value);
+  };
+
+  const onClearIconClick = () => {
+    setSearch("");
+  };
+
+  const filterPeople = person => {
+    return person.firstname.toUpperCase().includes(search.toUpperCase()) || 
+      person.lastname.toUpperCase().includes(search.toUpperCase());
+  };
+
   return (
     <>
-      <main>{people.map(toPersonCard)}</main>
+      <main>{people.filter(filterPeople).map(toPersonCard)}</main>
       <footer>
         <TextField
           icon="search"
-          trailingIcon={{ icon: "close" }}
+          trailingIcon={{ 
+            icon: "close",
+            onClick: onClearIconClick
+          }}
           label="search by name"
+          value={search}
+          onChange={onSearchChange}
         />
       </footer>
     </>

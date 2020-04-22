@@ -2,7 +2,6 @@ import React from "react";
 
 import { Header } from "../solution/Header";
 
-import { PersonCardModel } from "./PersonCardModel";
 import { PersonCard } from "./PersonCard";
 // import { PersonCard } from "../solution/PersonCard";
 
@@ -17,11 +16,7 @@ export const App: React.FC<AppProps> = ({ people }) => {
     <>
       <Header />
       <main>
-        <PersonCard />
-        <PersonCardModel />
-        <pre style={{ fontSize: 12 }}>
-          {JSON.stringify(randomPerson, null, 2)}
-        </pre>
+        <PersonCard person={randomPerson} />
       </main>
     </>
   );

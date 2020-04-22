@@ -2,7 +2,7 @@ import React from "react";
 
 import { Header } from "./Header";
 // import { Header } from "../solution/ex01/Header";
-import { Card } from "./Card";
+import { Card, test } from "./Card";
 // import { Card } from "../solution/ex01/Card";
 
 const message = "React @ SFEIR";
@@ -10,9 +10,9 @@ const message = "React @ SFEIR";
 export const App: React.FunctionComponent = () => {
   return (
     <>
-      <header>replace this header with the Header component</header>
+      <Header />
       <main>
-        put the Card component here and pass "{message}" as title prop
+        <Card title={message} />
       </main>
     </>
   );

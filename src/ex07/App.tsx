@@ -6,26 +6,47 @@ import { Loading } from "../solution/Loading";
 import { SearchableList } from "../solution/SearchableList";
 import { Player } from "../solution/Player";
 import { loadPeople } from "../utils";
+import { Switch, Route, Redirect, NavLink } from "react-router-dom";
+import { Person } from "./Person";
 
 export const App: React.FC = () => {
-  const [showList, setShowList] = useState(true);
-  const toggleView = () => setShowList(x => !x);
-  const toggleIcon = showList ? "view_carousel" : "view_module";
-
   const [people, setPeople] = useState<People>([]);
   useEffect(() => {
     loadPeople().then(setPeople);
   }, []);
 
-  const CurrentView: React.ComponentType<{ people: People }> =
-    people.length === 0 ? Loading : showList ? SearchableList : Player;
-
   return (
     <>
       <Header>
-        <TopAppBarActionItem icon={toggleIcon} onClick={toggleView} />
+        <NavLink to="/player" activeStyle={{ display: "none" }}>
+          <TopAppBarActionItem icon="view_carousel" />
+        </NavLink>
+        <NavLink to="/list" activeStyle={{ display: "none" }}>
+          <TopAppBarActionItem icon="view_module" />
+        </NavLink>
       </Header>
-      <CurrentView people={people} />
+      {
+        people.length === 0 ? <Loading/> : (
+          <Switch>
+
+            <Route path="/list">
+              <SearchableList people={people} />
+            </Route>
+
+            <Route path="/player">
+              <Player people={people} />
+            </Route>
+
+            <Route path="/person/:id" render={({ match: { params: { id: personId } }}) => {
+              const person = people.find(person => person.id === personId);
+              return <Person person={person}/>;
+            }} />
+
+            <Redirect to="/list" />
+
+          </Switch>
+        )
+      }
     </>
   );
 };

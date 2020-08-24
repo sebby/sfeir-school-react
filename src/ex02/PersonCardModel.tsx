@@ -1,4 +1,5 @@
 import React from "react";
+import { CardHeader } from "./Card";
 
 // decompose this component using Card
 // and appropriate subcomponents of Card to be implemented.
@@ -27,7 +28,7 @@ export const PersonCardModel: React.FC = () => (
           email
         </i>
         &nbsp;
-        <a href="mailto:Leanne.Woodard@BIOSPAN.com">woodard.l@acme.com</a>
+        <a href="mailto:Leanne.Woodard@BIOSPAN.com">wooddard.l@acme.com</a>
       </p>
       <p>
         <i

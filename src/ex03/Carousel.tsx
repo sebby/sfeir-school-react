@@ -50,11 +50,13 @@ export class Carousel extends React.Component {
   };
   skipNext = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    this.setState( { index: range(0,this.state.countPeople).succ(this.state.index) } );
+    let index = range(0,this.state.countPeople).succ(this.state.index);
+    this.setState( { index: index } );
   };
   skipPrevious = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    this.setState( { index: range(0,this.state.countPeople).pred(this.state.index) } );
+    let index = range(0,this.state.countPeople).pred(this.state.index);
+    this.setState( { index: index } );
   };
   render() {
     return (

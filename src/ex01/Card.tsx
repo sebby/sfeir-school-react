@@ -7,13 +7,17 @@ import React from 'react';
 type CardProps = {
   title: string;
 };
+type Toto = {
+  message: string;
+};
 
-export const Card : React.FunctionComponent = (props) => {
+// export const Card : React.FunctionComponent<Toto> = (props) => {
+export const Card  = (props) => {
   return (
-    <section className="mdc-card" style={{width: 480}}>
+    <section className="mdc-card" style={{width: '480px'}}>
     <div style={{padding: '1rem'}}>
       <h1 className="mdc-typography--headline4">
-        {props.title}
+        {props.message}
       </h1>
     </div>
   </section>

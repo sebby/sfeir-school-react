@@ -11,8 +11,7 @@ export const App: React.FunctionComponent = () => {
   return (
     <>
       <Header/>
-      <Card title="Hello world"/>
-      
+      <main><Card message="Hello world"/></main>
     </>
   );
 };

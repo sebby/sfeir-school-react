@@ -14,29 +14,36 @@ export const App: React.FC<AppProps> = ({ people }) => {
 
   const [currentView, updateToto] = useState('view_carousel');
 
-  const switchView =  () => {
-    if(currentView === 'view_carousel'){
+  const switchView = () => {
+    if (currentView === 'view_carousel') {
       updateToto('view_module');
     }
-    else{
+    else {
       updateToto("view_carousel");
     }
-    
+
   }
-  const list = people.map(person=>(
-    <PersonCard person={person} key={person.id}/>
+  const list = people.map(person => (
+    <PersonCard person={person} key={person.id} />
   ));
 
   return (
     <>
       <Header>
-      <TopAppBarActionItem icon="view_carousel" onClick={switchView}/>
-      <TopAppBarActionItem icon="view_module" onClick={switchView}/>
+        <TopAppBarActionItem icon="view_carousel" onClick={switchView} />
+        <TopAppBarActionItem icon="view_module" onClick={switchView} />
         {/* use "view_module" as icon for showing the list */}
       </Header>
       <main>
+        {/* {
+          currentView === 'view_module' ? list : <Carousel people={people} />
+        } */}
         {
-          currentView === 'view_module'?list:<Carousel people={people}/> 
+          currentView === 'view_module' ? (
+            list
+          ) : (
+              <Carousel people={people} />
+            )
         }
       </main>
     </>

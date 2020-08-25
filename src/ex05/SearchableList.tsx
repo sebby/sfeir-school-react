@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState, SyntheticEvent} from "react";
 import { TextField } from "@rmwc/textfield";
 
 import { PersonCard } from "../solution/PersonCard";
+import { PeopleProvider } from "../ex08/PeopleContext";
 
 // hint: to check if a string contains some substring,
 // create a case insensitive regular expression
@@ -19,14 +20,27 @@ type SearchableListProps = {
 };
 
 export const SearchableList: React.FC<SearchableListProps> = ({ people }) => {
+  const [azerty, setSearch] = useState("");
+
+  const onChangeTextField = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setSearch(e.target.value.toLowerCase());
+    //let toto = people.filter(person => person.firstname === azerty);
+  };
+
+  const toto = people.filter(person => person.firstname.toLowerCase().includes(azerty));
+  const list =  toto.map(toPersonCard);
+
   return (
     <>
-      <main>{people.map(toPersonCard)}</main>
+      <main>{list}</main>
       <footer>
         <TextField
           icon="search"
           trailingIcon={{ icon: "close" }}
           label="search by name"
+          value={azerty}
+          onChange = {onChangeTextField}
         />
       </footer>
     </>

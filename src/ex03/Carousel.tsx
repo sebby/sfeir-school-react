@@ -1,8 +1,8 @@
 import React from "react";
-
 import { PersonCard } from "../solution/PersonCard";
+import { range } from '../utils';
 
-import {range} from '../utils';
+
 
 // cycle through the people array when clicking the previous
 // and the next buttons. Look in ../utils.js for some utility
@@ -40,12 +40,18 @@ export const CarouselOff: React.FC<CarouselProps> = ({ people }) => (
 // @see https://jamesmfriedman.github.io/rmwc/fabs
 
 
+type CarouselState = {
+  index: number,
+  countPeople:number,
+}
+
+
 export class Carousel extends React.Component {
-  constructor(props) {
+  constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
       index: 0,
-      countPeople: this.props.people.length-1,
+      countPeople: this.props.people.length-1
     }
   };
   skipNext = (e: { preventDefault: () => void; }) => {

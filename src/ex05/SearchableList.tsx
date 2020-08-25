@@ -25,10 +25,12 @@ export const SearchableList: React.FC<SearchableListProps> = ({ people }) => {
   const onChangeTextField = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setSearch(e.target.value.toLowerCase());
-    //let toto = people.filter(person => person.firstname === azerty);
   };
 
-  const toto = people.filter(person => person.firstname.toLowerCase().includes(azerty));
+  const toto = people.filter(person => {
+    return person.firstname.toLowerCase().includes(azerty) 
+    || person.lastname.toLowerCase().includes(azerty);
+  });
   const list =  toto.map(toPersonCard);
 
   return (

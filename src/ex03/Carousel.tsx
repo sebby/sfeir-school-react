@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import { PersonCard } from "../solution/PersonCard";
 import { range } from '../utils';
 
@@ -45,7 +45,37 @@ type CarouselState = {
   countPeople:number,
 }
 
+export const Carousel = (props) => {
+  const countPeople = props.people.length-1;
+  
+  const [index, fctPrev] = useState(0);
+  const [people, fctPickPeople] = useState(props.people);
 
+  
+  const skipPrevious = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    let current = (range(0,countPeople).pred(index));
+    fctPrev(current);
+    console.log(countPeople);
+    console.log(people);
+    console.log(index);
+  };
+  const skipNext = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+  };
+
+  return (
+    <div className="flex-row">
+      <Fab icon="skip_previous" onClick={skipPrevious} />
+      <div className="carousel">
+        <PersonCard person={people} className="current" />
+      </div>
+      <Fab icon="skip_next" onClick={skipNext} />
+    </div>
+  );
+}
+
+/*
 export class Carousel extends React.Component {
   constructor(props: Readonly<{}>) {
     super(props);
@@ -76,3 +106,4 @@ export class Carousel extends React.Component {
     );
   }
 }
+*/

@@ -14,7 +14,7 @@ export const App: React.FC<AppProps> = ({ people }) => (
   <>
     <Header />
     <main>
-      <Carousel people={people} />
+    <Carousel people={people} />
     </main>
   </>
 );

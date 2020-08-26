@@ -10,12 +10,10 @@ import { Player } from "./Player";
 // import { Player } from "../solution/Player";
 
 export const App: React.FC = () => {
-  const [showList, setShowList] = useState(true);
+  const [showList, setShowList] = useState(false);
   const [people, setDatasPeople] = useState([]);
   const toggleView = () => setShowList(x => !x);
   const toggleIcon = showList ? "view_carousel" : "view_module";
-
-
 
   useEffect(() => {
       loadPeople().then(data => {
@@ -41,6 +39,7 @@ export const App: React.FC = () => {
         <TopAppBarActionItem icon={toggleIcon} onClick={toggleView} />
       </Header>
       <CurrentView people={people} />
+  
     </>
   );
 };
